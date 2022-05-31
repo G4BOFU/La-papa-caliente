@@ -5,21 +5,36 @@
  */
 package la.papa.caliente;
 
-    class Lista {
-    
-        nodo L, aux, aux2;
-    
+import java.io.*;
 
-    nodo recorrer(int n, boolean horario){
+class Lista {
+
+    nodo L, aux, aux2;
+    String linea;
+    void leerfichero(){
+        BufferedReader br = new BufferedReader(fileReader("jugadores.in"));
+            while((linea = br readLine)!=null){
+                String[] datos = linea.split("//");
+    }
+    
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    nodo recorrer(int n, boolean horario) {
         aux = L;
-        for(int i = 1; i<n; i++){   
-            aux = horario?aux.sig : aux.ant;           
-        
+        for (int i = 1; i < n; i++) {
+            aux = horario ? aux.sig : aux.ant;
+
         }
-        
+
         return aux;
 
-}
-    
-    
+    }
+
 }
