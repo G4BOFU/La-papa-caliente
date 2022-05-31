@@ -10,7 +10,14 @@ package la.papa.caliente;
         nodo L, aux, aux2;
     
 
-    public void agregar(){
+    nodo recorrer(int n, boolean horario){
+        aux = L;
+        for(int i = 1; i<n; i++){   
+            aux = horario?aux.sig : aux.ant;           
+        
+        }
+        
+        return aux;
 
 }
     
