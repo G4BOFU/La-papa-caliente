@@ -16,15 +16,21 @@ public class nodo {
     nodo ant;
     nodo sig;
 
-    nodo(String valor, int valor2){
-        this.dato = valor;
-        this.edad = valor2;
+    nodo(String nombre){
+        this.dato = nombre;
+
     
     }
     
     nodo(nodo siguiente){
         this.sig = siguiente;
     }
+
+    nodo() {
+    }
+
+ 
+   
 
     
 

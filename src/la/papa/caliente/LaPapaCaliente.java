@@ -22,7 +22,15 @@ public class LaPapaCaliente {
         Lista l = new Lista();
         Lista lis = new Lista();
         
-
+        l.add("Gabo");
+        l.add("Diego");
+        l.add("Gabo2");
+        l.add("Gabo3");
+        l.add("Gabo4");
+        l.add("Gabo5");
+        l.recorrer(20, false);
+        l.mostrar();
+        
     }
 
 }
