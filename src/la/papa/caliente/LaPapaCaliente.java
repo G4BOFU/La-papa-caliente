@@ -21,8 +21,16 @@ public class LaPapaCaliente {
 
         Lista l = new Lista();
         Lista lis = new Lista();
+       
         
-        l.mostrar();
+        
+        l.add("Gabo");
+        l.add("Diego");
+        l.add("Cesar");
+        l.add("Gabo2");        
+        l.recorrer(1, false);
+        
+        
         
     }
 

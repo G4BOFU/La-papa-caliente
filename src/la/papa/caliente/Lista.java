@@ -6,11 +6,14 @@
 package la.papa.caliente;
 
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 class Lista {
 
     
-
+    PrintWriter pw;
+    FileReader fr;
     nodo p, u, aux;
     nodo aux2  = aux;
     
@@ -38,11 +41,11 @@ class Lista {
 
     nodo recorrer(int n, boolean horario) {
         aux = p;
-        for (int i = 1; i < n; i++) {
+        for (int i = 1; i <= n; i++) {
             
             aux = horario ? aux.sig : aux.ant;
-
         }
+        System.out.println(aux.dato);
         return aux;
          
         
@@ -73,6 +76,19 @@ class Lista {
              System.out.println(actual.dato);
              actual = actual.sig;
          }while(actual!= p);
+      }
+     
+      void escribir(String nombrear) throws IOException{
+      
+        pw = new PrintWriter(new FileWriter(nombrear,false));
+        String linea2 = aux.dato;
+      
+        pw.println(linea2);
+        
+        pw.close();
+
+          
+          
       }
 }
 
