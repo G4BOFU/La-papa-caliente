@@ -20,7 +20,6 @@ public class Lista {
     public void insertarjugador(){
     
         nodo nuevo = new nodo();
-        System.out.println("Ingrese nombre del participante");
         nuevo.Jugadores = teclado.next();
         
         if (primero == null){
