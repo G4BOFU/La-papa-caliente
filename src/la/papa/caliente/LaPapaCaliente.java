@@ -19,16 +19,12 @@ public class LaPapaCaliente {
      */
     public static void main(String[] args) throws IOException {
 
-        Lista l = new Lista();
+       
         Lista lis = new Lista();
        
         
         
-        l.add("Gabo");
-        l.add("Diego");
-        l.add("Cesar");
-        l.add("Gabo2");        
-        l.recorrer(1, false);
+        lis.read("Jugadores.in", lis);
         
         
         

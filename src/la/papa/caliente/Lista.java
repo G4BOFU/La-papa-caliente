@@ -11,18 +11,16 @@ import java.util.logging.Logger;
 
 class Lista {
 
-    
     PrintWriter pw;
     FileReader fr;
     nodo p, u, aux;
-    nodo aux2  = aux;
-    
-    
-    void add(String nombre){
-        
+    nodo aux2 = aux;
+
+    void add(String nombre) {
+
         nodo nuevo = new nodo(nombre);
         nuevo.dato = nombre;
-        if(p == null){
+        if (p == null) {
             p = nuevo;
             p.sig = p;
             nuevo.ant = u;
@@ -34,66 +32,45 @@ class Lista {
             u = nuevo;
             p.ant = u;
 
-            }
         }
-    
-    
+    }
 
     nodo recorrer(int n, boolean horario) {
         aux = p;
         for (int i = 1; i <= n; i++) {
-            
+
             aux = horario ? aux.sig : aux.ant;
         }
         System.out.println(aux.dato);
         return aux;
-         
-        
 
     }
-    
 
-
-      void read(String Nombref,Lista lis) throws  IOException {
-        
-          FileReader fr = new FileReader(Nombref);
-          BufferedReader br = new BufferedReader(fr);
-          String linea;
-        
-        while((linea = br.readLine()) != null){
-
-            
-            lis.add(linea);
-        
+    void read(String Nombref, Lista lis) throws IOException {
+        try (BufferedReader br = new BufferedReader(new FileReader(Nombref))) {
+            String nom;
+            while ((nom = br.readLine()) != null) {
+                lis.add(nom);
+            }
+        } catch (IOException e) {
         }
 
     }
-      
-      void mostrar(){
-         nodo actual = new nodo();
-         actual = p;
-         do{
-             System.out.println(actual.dato);
-             actual = actual.sig;
-         }while(actual!= p);
-      }
-     
-      void escribir(String nombrear) throws IOException{
-      
-        pw = new PrintWriter(new FileWriter(nombrear,false));
-        String linea2 = aux.dato;
-      
-        pw.println(linea2);
-        
+
+    void mostrar() {
+        nodo actual = new nodo();
+        actual = p;
+        do {
+            System.out.println(actual.dato);
+            actual = actual.sig;
+        } while (actual != p);
+    }
+
+    void escribir(String nombrear, String dato) throws IOException {
+
+        pw = new PrintWriter(new FileWriter(nombrear, true));
+        pw.println(dato);
         pw.close();
 
-          
-          
-      }
+    }
 }
-
-
-
-   
-
-
