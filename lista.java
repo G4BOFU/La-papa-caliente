@@ -1,84 +1,82 @@
-package papacaliente;
+package la.papa.caliente;
+
+import java.io.*;
 import java.util.Scanner;
-public class Lista {
+
+class Lista {
     Scanner teclado = new Scanner(System.in);
-    nodo primero;
-    nodo ultimo;
-    nodo aux;
     nodo anterior;
-    int cantidad = 1;
+    int pase = 1;
     int turno = 0;
     String perdedores;
     String ganador = null;
     int modo;
     int a;
-    public Lista (){ 
-        primero = null;
-        ultimo = null;
-       
-    }
-    public void insertarjugador(){
+
     
-        nodo nuevo = new nodo();
-        nuevo.Jugadores = teclado.next();
+
+    nodo p, u, aux;
+    
+    
+    void add(String nombre){
         
-        if (primero == null){
-        primero = nuevo;
-        ultimo = nuevo;
-        primero.siguiente = primero;
-        primero.siguiente = ultimo;
-        }else{
-            ultimo.siguiente = nuevo;
-            nuevo.siguiente = primero;
-            nuevo.anterior = ultimo;
-            ultimo = nuevo;
-            primero.anterior = ultimo;
+        nodo nuevo = new nodo(nombre);
+        nuevo.dato = nombre;
+        if(p == null){
+            p = nuevo;
+            p.sig = p;
+            nuevo.ant = u;
+            u = nuevo;
+        } else {
+            u.sig = nuevo;
+            nuevo.sig = p;
+            nuevo.ant = u;
+            u = nuevo;
+            p.ant = u;
+
+            }
         }
-        System.out.println("El jugador a sido agregado");
-        
-    }
-    public void papacaliente(){
-        System.out.println("**ingrese cantidad de jugadores**");
+    
+    
+
+    nodo recorrer(int a, boolean horario) {
+        System.out.println("**ingrese cantidad de turnos igual a la cantidad de participantes**");
         a = teclado.nextInt();
-        while(cantidad <= a ) {
+        while (pase <= a){
+        int n = (int)(Math.random()*10+1);
         System.out.println("juegue en modo horario (1) o anti-horario (2)");
         modo = teclado.nextInt();
+        aux = p;
         turno++;
-        cantidad++;
-        
-    switch(modo){
+        pase++;
+        aux = horario ? aux.sig: aux.ant;
+        switch(modo){
         case 1:
-    aux = primero;   
-    int n = (int)(Math.random()*10+1);
+            horario = true;
         for(int A = 0; A <= n; A++){
             anterior = aux;
-            aux = aux.siguiente;
+            aux = horario ? aux.sig : aux.ant;   
         if(A == n){
             System.out.println("caliente");
-            anterior.siguiente = aux.siguiente;
-            aux.siguiente.anterior = anterior;
-            ganador = aux.Jugadores;
-            perdedores = aux.Jugadores; 
-            System.out.println("**"+perdedores+" salio en el turno "+turno+"**");
-        
+            anterior.sig = aux.sig;
+            aux.sig.ant = anterior;
+            ganador = aux.dato;
+            System.out.println("**"+aux.dato+" salio en el turno "+turno+"**");
         }else{
             System.out.println("papa");
         }
     }break;
       case 2:
-       int b = (int)(Math.random()*10+1);
-       aux = ultimo;
-       for(int y = 0; y <= b; y++){
+          horario = false;
+       for(int y = 0; y <= n; y++){
         anterior = aux;
-        aux = aux.anterior;
-       if(y == b){
+        aux = horario ? aux.sig : aux.ant;
+       if(y == n){
            System.out.println("caliente");
-           anterior.anterior =aux.anterior;
-           aux.anterior.siguiente = anterior;
-           ganador = aux.Jugadores;
-           perdedores = aux.Jugadores;
-           System.out.println("**"+perdedores+" Salio en el turno"+turno+"**");
-           
+           anterior.ant =aux.ant;
+           aux.ant.sig = anterior;
+           ganador = aux.dato;
+           System.out.println("**"+aux.dato+" Salio en el turno "+turno+"**");
        }else{
            System.out.println("papa");
        }
@@ -86,10 +84,44 @@ public class Lista {
     }break;
        
     }
+   
+         
+        
+
+     }
+        return aux;
+    }
     
-  }
-       System.out.println("**Gano: "+ganador+"**");
-        System.out.println("**Di la verda, te gusto la partida**");
- 
- }
+
+
+      void read(String Nombref,Lista lis) throws  IOException {
+        
+          FileReader fr = new FileReader(Nombref);
+          BufferedReader br = new BufferedReader(fr);
+          String linea;
+        
+        while((linea = br.readLine()) != null){
+
+            
+            lis.add(linea);
+        
+        }
+
+    }
+      
+      void mostrar(){
+         nodo actual = new nodo();
+         actual = p;
+         do{
+             System.out.println(actual.dato);
+             actual = actual.sig;
+         }while(actual!= p);
+      }
 }
+
+
+
+   
+
+
+
