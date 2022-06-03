@@ -10,9 +10,28 @@ package la.papa.caliente;
  * @author Gabo
  */
 public class nodo {
-    
-    int valor;
+
+    String dato;
+    int edad;
     nodo ant;
-    nodo  sig;
-      
+    nodo sig;
+
+    nodo(String nombre){
+        this.dato = nombre;
+
+    
+    }
+    
+    nodo(nodo siguiente){
+        this.sig = siguiente;
+    }
+
+    nodo() {
+    }
+
+ 
+   
+
+    
+
 }
